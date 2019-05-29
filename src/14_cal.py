@@ -25,14 +25,18 @@ from datetime import datetime
 
 # Don't have time to keep hacking away at this, but at least I tried. ^_^
 
-if not sys.argv[1]:
-  # no arguments; print calendar for current month
-  dt = datetime.now()
-  cal = calendar.TextCalendar(firstweekday=0)
-  cal.prmonth(theyear=dt.year, themonth=dt.month)
-elif not sys.argv[2]:
-  # one argument; render calendar for specified month
-  pass
-else:
+dt = datetime.now()
+tc = calendar.TextCalendar()
+
+if len(sys.argv) == 1:
+  # no arguments; render calendar for current month and year
+  tc.prmonth(dt.year, dt.month)
+elif len(sys.argv) == 2:
+  # one argument; render calendar for specific month in current year
+  tc.prmonth(dt.year, int(sys.argv[1]))
+elif len(sys.argv) == 3:
   # two arguments; render calendar for specific month and year
-  pass
+  tc.prmonth(int(sys.argv[2]), int(sys.argv[1]))
+else:
+  # error check!
+  print('stahp! too much arg')
