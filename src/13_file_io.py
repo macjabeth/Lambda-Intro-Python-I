@@ -10,8 +10,7 @@ import os
 # Open up the "foo.txt" file (which already exists) for reading
 # Print all the contents of the file, then close the file
 
-# this was torture - there must be an easier way (relative path wasn't working)
-with open(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'foo.txt')) as f:
+with open('foo.txt') as f:
   read_data = f.read()
   print(read_data)
 
